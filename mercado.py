@@ -1,7 +1,7 @@
 import cliente as cl
 
 categorias = ["Congelados", "Higiene Pessoal", "Limpeza", "Alimentos embalados", "Molhos", "Bebidas", "Hortifruti"]
-produtos_por_categoria = {
+prod_categoria = {
     "Congelados": ["Pizza", "Filé de Peixe", "Peito de Frango"],
     "Higiene Pessoal": ["Creme Dental", "Papel Higiênico", "Sabonete"],
     "Limpeza": ["Sabão em pó", "Detergente", "Água sanitária"],
@@ -11,7 +11,7 @@ produtos_por_categoria = {
     "Hortifruti": ["Maçã", "Batata Inglesa", "Alface", "Cebola"]
 }
 
-precos_produtos = {
+preco_prod = {
     "Pizza": 14.99,
     "Filé de Peixe": 16.98,
     "Peito de Frango": 9.68,
@@ -35,6 +35,32 @@ precos_produtos = {
     "Batata Inglesa": 5.80,
     "Alface": 6.99,
     "Cebola": 2.39
+}
+
+quantidade_prod = {
+    "Pizza": 12,
+    "Filé de Peixe": 6,
+    "Peito de Frango": 8,
+    "Creme Dental": 20,
+    "Papel Higiênico": 20,
+    "Sabonete": 20,
+    "Sabão em pó": 15,
+    "Detergente": 20,
+    "Água sanitária": 15,
+    "Feijão": 20,
+    "Arroz": 20,
+    "Macarrão": 20,
+    "Ketchup": 18,
+    "Maionese": 18,
+    "Creme de Leite": 18,
+    "Coca-cola": 15,
+    "Água Mineral": 30,
+    "Vodka Skyy": 10,
+    "Red Label": 6,
+    "Maçã": 30,
+    "Batata Inglesa": 35,
+    "Alface": 16,
+    "Cebola": 25
 }
 
 rodandoAdm = True
@@ -82,12 +108,14 @@ if opcao == '1':
                     print("Opção inválida. Tente novamente.")
 
             elif opc == '2':
-                print("\nTodos os Produtos Cadastrados:")
+                print("\nProdutos Cadastrados:")
 
-                for categoria, produtos_categoria in produtos_por_categoria.items():
+                for categoria, produtos_categoria in prod_categoria.items():
                     print(f"\n{categoria}:")
                     for produto in produtos_categoria:
-                        print(f"- {produto}")
+                        preco = preco_prod[produto]
+                        quantidade = quantidade_prod[produto]
+                        print(f"- {produto} (R${preco:.2f}) - Quantidade: {quantidade}")
                     print("--------------------------------")
 
                 print("Próximo! Escolha uma opção:")
@@ -108,10 +136,12 @@ if opcao == '1':
                             continue
                     categoria_escolhida = categoria_escolhida.capitalize()
 
-                    if categoria_escolhida in produtos_por_categoria.keys():
+                    if categoria_escolhida in prod_categoria.keys():
                         print(f"\nProdutos na categoria '{categoria_escolhida}':")
-                        for produto in produtos_por_categoria[categoria_escolhida]:
-                            print(f"- {produto}")
+                        for produto in prod_categoria[categoria_escolhida]:
+                            preco = preco_prod[produto]
+                            quantidade = quantidade_prod[produto]
+                            print(f"- {produto} (R${preco:.2f}) - Quantidade: {quantidade}")
                     else:
                         print("Categoria não encontrada.")
 
@@ -148,8 +178,9 @@ if opcao == '1':
                     quantidade_produto = int(input(f"Digite a quantidade de {nome_produto}: "))
 
                     novo_produto = f"{nome_produto} ({quantidade_produto})"
-                    produtos_por_categoria[categoria_encontrada].append(novo_produto)
-                    precos_produtos[novo_produto] = preco_produto
+                    prod_categoria[categoria_encontrada].append(novo_produto)
+                    preco_prod[novo_produto] = preco_produto
+                    quantidade_prod[novo_produto] = quantidade_produto
 
                     print(f"{novo_produto} foi adicionado à categoria {categoria_encontrada.capitalize()} com sucesso!")
                     print("--------------------------------")
@@ -158,9 +189,13 @@ if opcao == '1':
                     print("Categoria não encontrada.")
 
             elif opc == '4':
-                print("\nCategorias Cadastradas:")
-                for i, ct in enumerate(categorias, 1):
-                    print(f"{i}. {ct}")
+                print("\nProdutos Cadastrados:")
+
+                for categoria, produtos_categoria in prod_categoria.items():
+                    print(f"\n{categoria}:")
+                    for i, produto in enumerate(produtos_categoria, 1):
+                        print(f"{i}. {produto}")
+                    print("--------------------------------")
 
                 categoria_editar = input("Digite o número ou o nome da categoria para editar um produto: ")
                 if categoria_editar.isdigit():
@@ -173,22 +208,26 @@ if opcao == '1':
 
                 categoria_editar = categoria_editar.capitalize()
 
-                if categoria_editar in produtos_por_categoria:
+                if categoria_editar in prod_categoria:
                     print(f"\nProdutos na categoria '{categoria_editar}':")
-                    for i, produto in enumerate(produtos_por_categoria[categoria_editar], 1):
+                    for i, produto in enumerate(prod_categoria[categoria_editar], 1):
                         print(f"{i}. {produto}")
                     numero_produto_editar = int(input("Digite o número correspondente ao produto que deseja editar: "))
 
-                    if numero_produto_editar >= 1 and numero_produto_editar <= len(produtos_por_categoria[categoria_editar]):
-                        produto_editar = produtos_por_categoria[categoria_editar][numero_produto_editar - 1]
+                    if numero_produto_editar >= 1 and numero_produto_editar <= len(prod_categoria[categoria_editar]):
+                        produto_editar = prod_categoria[categoria_editar][numero_produto_editar - 1]
 
                         nome_produto_editar = input("Digite o novo nome para o produto: ")
                         preco_produto_editar = float(input("Digite o novo preço para o produto: "))
                         quantidade_produto_editar = int(input("Digite a nova quantidade para o produto: "))
 
                         novo_produto_editar = f"{nome_produto_editar} ({quantidade_produto_editar})"
-                        produtos_por_categoria[categoria_editar][numero_produto_editar - 1] = novo_produto_editar
-                        precos_produtos[novo_produto_editar] = preco_produto_editar
+                        prod_categoria[categoria_editar][numero_produto_editar - 1] = novo_produto_editar
+                        preco_prod.pop(produto_editar)
+                        quantidade_prod.pop(produto_editar)
+
+                        preco_prod[novo_produto_editar] = preco_produto_editar
+                        quantidade_prod[novo_produto_editar] = quantidade_produto_editar
 
                         print(f"Produto editado com sucesso para: {novo_produto_editar}")
                     else:
@@ -198,9 +237,13 @@ if opcao == '1':
                     print("Categoria não encontrada.")
 
             elif opc == '5':
-                print("\nCategorias Cadastradas:")
-                for i, ct in enumerate(categorias, 1):
-                    print(f"{i}. {ct}")
+                print("\nProdutos Cadastrados:")
+
+                for categoria, produtos_categoria in prod_categoria.items():
+                    print(f"\n{categoria}:")
+                    for i, produto in enumerate(produtos_categoria, 1):
+                        print(f"{i}. {produto}")
+                    print("--------------------------------")
 
                 categoria_excluir = input("Digite o número ou o nome da categoria para excluir um produto: ")
                 if categoria_excluir.isdigit():
@@ -213,17 +256,22 @@ if opcao == '1':
 
                 categoria_excluir = categoria_excluir.capitalize()
 
-                if categoria_excluir in produtos_por_categoria:
+                if categoria_excluir in prod_categoria:
                     print(f"\nProdutos na categoria '{categoria_excluir}':")
-                    for i, produto in enumerate(produtos_por_categoria[categoria_excluir], 1):
+                    for i, produto in enumerate(prod_categoria[categoria_excluir], 1):
                         print(f"{i}. {produto}")
                     numero_produto_excluir = int(input("Digite o número correspondente ao produto que deseja excluir: "))
 
-                    if numero_produto_excluir >= 1 and numero_produto_excluir <= len(produtos_por_categoria[categoria_excluir]):
-                        produto_excluir = produtos_por_categoria[categoria_excluir][numero_produto_excluir - 1]
-                        del produtos_por_categoria[categoria_excluir][numero_produto_excluir - 1]
-                        del precos_produtos[produto_excluir]
-                        print(f"Produto excluído com sucesso: {produto_excluir}")
+                    if numero_produto_excluir >= 1 and numero_produto_excluir <= len(prod_categoria[categoria_excluir]):
+                        produto_excluir = prod_categoria[categoria_excluir][numero_produto_excluir - 1]
+                        prod_categoria[categoria_excluir].pop(numero_produto_excluir - 1)
+                        preco_excluido = preco_prod.pop(produto_excluir, None)
+                        quantidade_excluida = quantidade_prod.pop(produto_excluir, None)
+
+                        if preco_excluido is not None and quantidade_excluida is not None:
+                            print(f"Produto excluído com sucesso: {produto_excluir}")
+                        else:
+                            print("Erro ao excluir o produto.")
                     else:
                         print("Número de produto inválido.")
 
