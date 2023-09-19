@@ -1,0 +1,17 @@
+#PLANEJAMENTO:
+# Cadastro de Usuário(0) - Exposição de Produtos(1 - 1.1) - Escolha e Precificação(2) - Finalização e Total
+# Duas escolhas de ação: Cadastro/Organização do Produtos do Mercado ou Venda dos Produtos para clientes...
+#-------------------------------------------------
+#COLETA DE INFORMAÇÕES:
+# 0 = nome
+#1 = Categorias: Congelados, Higiene Pessoal, Limpeza, Alimentos não Perecíveis/Enlatados, Alimentos Perecíveis/Embalados, Bebidas, Hortifrúti;
+#1.1 = Produtos: Alimentos Congelados: pizza, peixe, frango; Itens de Higiene Pessoal: creme dental, Papel Higiênico, Sabonete; Itens de Limpeza = Sabão em pó, Detergente,
+#Água sanitária;Alimentos não Perecíveis/Enlatados = Feijão, Arroz, Macarrão; Alimentos Perecíveis/Embalados: Ketchup, Iorgute, Creme de Leite;  Bebidas: Coca-cola, Água, Skyy,
+#Red Label; Hortifrúti: Maçã, Batata, Alface, Cebola;
+#2 = Pizza 4 Queijos(460g): R$14,99; Filé De Mapará(500g): R$16,98; Peito de Frango(1Kg): R$09,68;
+#Creme Dental Tripla Limpeza(120g): R$03,29; Papel Higiênico Folha Dupla(12 rolos): R$17,45; Sabonete Lavanda(85g): R$02,19;
+#Sabão em pó Primavera(1kg): R$14,99; Detergente Neutro(500ml): R$03,40; Água sanitária(1L): R$04,40;
+#Feijão Carioca(1Kg): R$07,29; Arroz Tipo 1 (1Kg): R$05,59; Macarrão Espaguete(500g): R$03,49;
+#Ketchup Tradicional(400g): R$07,77; Iorgute Morango(1,25Kg): R$16,99; Creme de Leite(200g): R$02,89;
+#Coca-cola Zero(1L): R$06,49; Água Mineral Sem Gás(519ml): R$02,39; Vodka Skyy(750ml): R$35,14; Red Label(500ml): R$42,90;
+#Maçã Nacional(1kg): R$12,90; Batata Inglesa(1kg): R$05,80; Alface Americana(1 unidade): R$06,99; Cebola Nacional(1kg): R$02,39;
