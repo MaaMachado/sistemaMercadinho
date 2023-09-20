@@ -1,7 +1,7 @@
-categorias = ["Congelados", "Higiene", "Limpeza", "Alimentos embalados", "Molhos", "Bebidas", "Hortifruti"]
+categorias = ["Congelados", "Higiene pessoal", "Limpeza", "Alimentos embalados", "Molhos", "Bebidas", "Hortifruti"]
 prod_categoria = {
     "Congelados": ["Pizza", "Filé de Peixe", "Peito de Frango"],
-    "Higiene": ["Creme Dental", "Papel Higiênico", "Sabonete"],
+    "Higiene pessoal": ["Creme Dental", "Papel Higiênico", "Sabonete"],
     "Limpeza": ["Sabão em pó", "Detergente", "Água sanitária"],
     "Alimentos embalados": ["Feijão", "Arroz", "Macarrão"],
     "Molhos": ["Ketchup", "Maionese", "Creme de Leite"],
@@ -29,7 +29,7 @@ preco_prod = {
     "Água Mineral": 2.39,
     "Vodka Skyy": 35.14,
     "Red Label": 42.90,
-    "Maçã": 12.90,
+    "Maçã": 3.20,
     "Batata Inglesa": 5.80,
     "Alface": 6.99,
     "Cebola": 2.39
