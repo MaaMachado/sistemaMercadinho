@@ -4,7 +4,7 @@ def inform():
     rodandoCliente = True
     rodVenda = True
 
-    print("------------------------------------------------------------------")
+    print("\n------------------------------------------------------------------")
     print("Bem-vindo ao Mercadinho Mais Charmoso da sua Cidade, cliente!\n")
     print("Primeiramente, necessitamos de algumas informações para dar continuidade ao nosso atendimento online.\n")
 
@@ -16,7 +16,7 @@ def inform():
             print("\nÓtimo! Agora, O senhor(a) reside no bairro de Brotas? ")
             bairro = input("Opção (s/n): ")
             if bairro == "s":
-                print("\nMaravilhoso!\nJá sabendo que o senhor(a) está dentro da localidade do Mercadinho Crocodile. Vamos dar continuidade no nosso atendiemnto.")
+                print("\nMaravilhoso!\nJá sabendo que o senhor(a) está dentro da localidade do Mercadinho Crocodile. Vamos dar continuidade no nosso atendimento.")
                 print("\nCADASTRO DE CLIENTE:")
                 nome = input ("Digite o seu nome: ")
                 idade = input ("Digite a sua idade: ")
@@ -133,10 +133,57 @@ def inform():
                                         continue
 
                                 elif opcao_venda == "2":
-                                    print("Teste")
-                                    break
+                                    print("\n---------------------------")
+                                    print("CARRINHO DE COMPRAS:")
+                                    total_compra = 0
+                                    for produto, info in carrinho.items():
+                                        preco_unitario = info["preco"]
+                                        quantidade = info["quantidade"]
+                                        preco_total_produto = preco_unitario * quantidade
+                                        total_compra += preco_total_produto
+                                        print(f"{produto} - Quantidade: {quantidade} - Preço Unitário: R${preco_unitario:.2f} - Preço Total: R${preco_total_produto:.2f}")
+                                        preco_mais_entrega = total_compra+5
+
+                                    print("--------------------------")
+                                    print(f"Valor da Compra: R${total_compra:.2f} \nTaxa de Entrega: R$5.00\nTotal da Compra: R${preco_mais_entrega:.2f}")
+                                    print("--------------------------")
+
+                                    print("\nOpções:")
+                                    print("1. Continuar Comprando")
+                                    print("2. Finalizar Compra")
+
+                                    opcao_carrinho = input("Escolha uma opção (1/2): ")
+
+                                    if opcao_carrinho == "1":
+                                        continue
+                                    elif opcao_carrinho == "2":
+                                        print("------------------------")
+                                        print("MÉTODOS DE PAGAMENTO:")
+                                        print("1. Cartão de Débito")
+                                        print("2. Cartão de Crédito")
+                                        print("3. Dinheiro")
+                                        print("4. Pix")
+                                        metodo_pagamento = input("Escolha o método de pagamento (1/2/3/4): ")
+
+                                        if metodo_pagamento in ("1", "2", "3", "4"):
+                                            print("\n-------------------------------------------")
+                                            print(f"COMPRA FINALIZADA, sr(a) {nome}! Obrigado por escolher o nosso mercadinho.")
+                                            print("------")
+                                            print(f"Endereço de entrega: {rua}, {numEnd}. \nTempo de entrega: 15 minutos.")
+                                            print("\n------")
+                                            print("Volte sempre!!\n")
+                                            rodandoCliente = False 
+                                            break
+                                        else:
+                                            print("Opção de pagamento inválida. Tente novamente.")
+                                            continue
+                                    else:
+                                        print("Opção inválida. Tente novamente.")
+                                        continue
 
                                 elif opcao_venda == "3":
+                                    print("\nQue pena que não continuou com suas compras!\nVolte sempre!!")
+                                    rodandoCliente = False 
                                     break
 
                                 else:
@@ -147,6 +194,7 @@ def inform():
                             print("\nReiniciando questionário...")
                             print("--------------------------------")
                             continue
+
                         else:
                             print("Opção inválida. Tente novamente.")
                             continue
@@ -182,7 +230,3 @@ def inform():
         else:
             print("Opção inválida. Tente novamente.")
             continue
-
-
-    else:
-        print("Opção inválida. Tente novamente.")
