@@ -3,7 +3,7 @@
 # Duas escolhas de ação: Cadastro/Organização do Produtos do Mercado ou Venda dos Produtos para clientes...
 #Foi escolhida as duas ações no sistema mercadinho; Para acessar as ações administradoras, precisar colocar uma senha para passar, e ser for cliente, passa normalmente.
 
--------------------------------------------------
+#-------------------------------------------------
 
 #COLETA DE INFORMAÇÕES:
 
@@ -25,82 +25,5 @@
 # 6 . Coca-cola: R$06,49; Água Mineral: R$02,39; Vodka Skyy: R$35,14; Red Label: R$42,90;
 # 7 . Maçã: R$12,90; Batata Inglesa(1kg): R$05,80; Alface: R$06,99; Cebola: R$02,39;
 
-ADAPTAR CODE:
-
-# ... (código anterior)
-
-if infoCliente == "s":
-    print("Agora vamos prosseguir para a etapa da venda.")
-
-    carrinho = {}  # Dicionário para armazenar os produtos selecionados pelo cliente
-    idade_cliente = int(idade)  # Converte a idade do cliente para um número inteiro
-
-    while True:
-        print("\nMENU DE VENDA:")
-        print("1. Listar Categorias")
-        print("2. Ver Carrinho")
-        print("3. Finalizar Compra")
-        print("4. Sair")
-
-        opcao_venda = input("Escolha uma opção (1/2/3/4): ")
-
-        if opcao_venda == "1":
-            print("\nCategorias Disponíveis:")
-            for i, categoria in enumerate(pd.categorias, 1):
-                print(f"{i}. {categoria}")
-
-            categoria_escolhida = input("Escolha a categoria (1 a 7): ")
-            if categoria_escolhida.isdigit():
-                categoria_escolhida = int(categoria_escolhida)
-                if 1 <= categoria_escolhida <= len(pd.categorias):
-                    categoria_escolhida = pd.categorias[categoria_escolhida - 1]
-                else:
-                    print("Número de categoria inválido.")
-                    continue
-            categoria_escolhida = categoria_escolhida.capitalize()
-
-            if categoria_escolhida in pd.categorias:
-                print(f"\nProdutos na categoria '{categoria_escolhida}':")
-                produtos_categoria = pd.prod_categoria[categoria_escolhida]
-                for i, produto in enumerate(produtos_categoria, 1):
-                    preco = pd.preco_prod[produto]
-                    print(f"{i}. {produto} (R${preco:.2f})")
-
-                escolha_produto = input("Escolha o número do produto que deseja comprar (ou 's' para sair): ")
-                if escolha_produto == 's':
-                    continue
-
-                if escolha_produto.isdigit():
-                    escolha_produto = int(escolha_produto)
-                    if 1 <= escolha_produto <= len(produtos_categoria):
-                        produto_selecionado = produtos_categoria[escolha_produto - 1]
-                        preco_produto = pd.preco_prod[produto_selecionado]
-
-                        # Verifica se o produto selecionado é uma bebida alcoólica
-                        if produto_selecionado in ("Vodka Skyy", "Red Label") and idade_cliente < 18:
-                            print("Você não tem idade suficiente para comprar bebidas alcoólicas.")
-                            continue
-
-                        quantidade_desejada = int(input("Digite a quantidade desejada: "))
-                        if quantidade_desejada <= pd.quantidade_prod[produto_selecionado]:
-                            if produto_selecionado in carrinho:
-                                carrinho[produto_selecionado]["quantidade"] += quantidade_desejada
-                            else:
-                                carrinho[produto_selecionado] = {
-                                    "preco": preco_produto,
-                                    "quantidade": quantidade_desejada
-                                }
-                            pd.quantidade_prod[produto_selecionado] -= quantidade_desejada
-                            print(f"{quantidade_desejada} unidades de {produto_selecionado} foram adicionadas ao carrinho.")
-                        else:
-                            print("Quantidade indisponível.")
-                    else:
-                        print("Número de produto inválido.")
-                else:
-                    print("Opção inválida. Tente novamente.")
-            else:
-                print("Categoria não encontrada.")
-
-        # Resto do código permanece o mesmo...
-
-# ... (código posterior)
+# COMEÇO:
+#O sistema começa quando executa o arquivo 'mercado.py' no terminal
